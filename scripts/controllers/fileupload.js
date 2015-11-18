@@ -10,13 +10,13 @@
 
 angular.module('realApp')
 
-        .controller('FileuploadCtrl', function ($scope, $window) {
+		.controller('FileuploadCtrl', function ($scope, $window) {
 
-            if ($window.sessionStorage.login !== "success") {
-                $window.location.href = '#/login';
-            }
+			if ($window.sessionStorage.login !== "success") {
+				$window.location.href = '#/login';
+			}
 
-            $scope.back = function () {
-                $window.location.href = "#/";
-            }
-        });
+			$scope.back = function () {
+				$window.location.href = "#/";
+			}
+		});
