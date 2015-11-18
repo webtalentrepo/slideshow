@@ -9,21 +9,17 @@
         <!-- build:css(.) styles/vendor.css -->
         <!-- bower:css -->
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <!--<link href='https://fonts.googleapis.com/css?family=Quicksand:700,300,400|Ubuntu' rel='stylesheet' type='text/css'>-->
-        <!--<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>-->
-        
-        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="bower_components/bootstrap-table/src/bootstrap-table.css" rel="stylesheet">
-        <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-        <link href="bower_components/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
-        <link href="bower_components/ng-dialog/css/ngDialog-custom-width.css" rel="stylesheet">
-        <link href="bower_components/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
-        <link href="bower_components/ng-dialog/css/ngDialog-theme-plain.min.css" rel="stylesheet">
-        <link href="bower_components/drop-zone/dropzone.css" rel="stylesheet">
-        
-
-
+        <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="libs/bootstrap-table/src/bootstrap-table.css" rel="stylesheet">
+        <link href="libs/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+        <link href="libs/ng-dialog/css/ngDialog.min.css" rel="stylesheet">
+        <link href="libs/ng-dialog/css/ngDialog-custom-width.css" rel="stylesheet">
+        <link href="libs/ng-dialog/css/ngDialog-theme-default.min.css" rel="stylesheet">
+        <link href="libs/ng-dialog/css/ngDialog-theme-plain.min.css" rel="stylesheet">
+		<link href="libs/angular/angular-bootstrap-lightbox.min.css" rel="stylesheet">
+		<link href="libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
+        <link href="libs/drop-zone/dropzone.css" rel="stylesheet">
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -59,43 +55,35 @@
                     </div>
                 </div>
             </div>
-        
-
         <div class="container main-view">
             <div ng-view=""></div>
         </div>
-
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-        <script src="bower_components/bootstrap-table/src/bootstrap-table.js"></script>
-        <script src="bower_components/bootstrap-table/src/bootstrap-table-en-US.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-touch/angular-touch.js"></script>
-        <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-        <script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
-        <script src="bower_components/ng-dialog/js/ngDialog.min.js"></script>
-        <script src="bower_components/drop-zone/dropzone.js"></script>
-
+        <script src="libs/jquery/dist/jquery.min.js"></script>
+        <script src="libs/angular/angular.js"></script>
+        <script src="libs/bootstrap-sass-official/assets/javascripts/bootstrap.min.js"></script>
+        <script src="libs/bootstrap-table/src/bootstrap-table.js"></script>
+        <script src="libs/bootstrap-table/src/bootstrap-table-en-US.js"></script>
+        <script src="libs/angular/angular-animate.min.js"></script>
+        <script src="libs/angular/angular-route.min.js"></script>
+		<script src="libs/angular/ui-bootstrap-tpls.min.js"></script>
+        <script src="libs/angular/ng-videosharing-embed.min.js"></script>
+        <script src="libs/angular/angular-bootstrap-lightbox.min.js"></script>
+        <script src="libs/angular-xeditable/dist/js/xeditable.js"></script>
+        <script src="libs/angularUtils-pagination/dirPagination.js"></script>
+        <script src="libs/ng-dialog/js/ngDialog.min.js"></script>
+        <script src="libs/drop-zone/dropzone.js"></script>
         <!-- Drag and Drop Image Reordering Module -->
-        <script src="bower_components/jquery/src/jquery-ui.js"></script>
+        <script src="libs/jquery/src/jquery-ui.js"></script>
         <!--Datepicker module-->
         <!-- Include Required Prerequisites -->
-        <script type="text/javascript" src="bower_components/bootstrap-daterangepicker/moment.min.js"></script>
-
+        <script type="text/javascript" src="libs/bootstrap-daterangepicker/moment.min.js"></script>
         <!-- Include Date Range Picker -->
-        <script type="text/javascript" src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
-
+        <script type="text/javascript" src="libs/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="libs/bootstrap-daterangepicker/daterangepicker.css" />
         <!-- endbower -->
         <!-- endbuild -->
-
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
