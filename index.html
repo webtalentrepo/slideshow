@@ -9,13 +9,12 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.) styles/vendor.css -->
         <!-- bower:css -->
+		<link rel="chrome-application-definition" href="manifest.json">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-        <!--<link href='https://fonts.googleapis.com/css?family=Quicksand:700,300,400|Ubuntu' rel='stylesheet' type='text/css'>-->
-        <!--<link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>-->
-        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-        <link href="bower_components/drop-zone/dropzone.css" rel="stylesheet">
-
+        <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="libs/angular/angular-bootstrap-lightbox.min.css" rel="stylesheet">
+		<link href="libs/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet"/>
+        <link href="libs/drop-zone/dropzone.css" rel="stylesheet">
         <!-- endbower -->
         <!-- endbuild -->
         <!-- build:css(.tmp) styles/main.css -->
@@ -28,32 +27,29 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
-		
-          <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-show="isLogin">
-                <div class="container">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" ng-href=""><label>ONPAR.TV</label></a>
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
 
-                        <!--<a class="navbar-brand" href="#/">real</a>-->
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-                        <ul class="nav navbar-nav">
-                            <li ng-class="{ active: isActive('/')}"><a ng-href="#/">Gallery</a></li>
-                            <li ng-class="{ active: isActive('/slide')}"><a ng-href="#/slide">Slide Show</a></li>
-                            <li ng-class="{ active: isActive('/userinfo')}"><a ng-href="#/userinfo">User Info</a></li>
-                            <li ng-class="{ active: isActive('/login')}"><a ng-href="#/login" ng-click="logout()">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" ng-show="isLogin">
+			<div class="container">
+				<div class="navbar-header">
+					<a class="navbar-brand" ng-href=""><label>ONPAR.TV</label></a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!--<a class="navbar-brand" href="#/">real</a>-->
+				</div>
+				<div class="collapse navbar-collapse" id="js-navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li ng-class="{ active: isActive('/')}"><a ng-href="#/">Gallery</a></li>
+						<li ng-class="{ active: isActive('/slide')}"><a ng-href="#/slide">Slide Show</a></li>
+						<li ng-class="{ active: isActive('/userinfo')}"><a ng-href="#/userinfo">User Info</a></li>
+						<li ng-class="{ active: isActive('/login')}"><a ng-href="#/login" ng-click="logout()">Logout</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
         <div class="container main-view">
             <div ng-view=""></div>
@@ -61,27 +57,24 @@
 
         <!-- build:js(.) scripts/vendor.js -->
         <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="bower_components/angular/angular.js"></script>
-        <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-        <script src="bower_components/angular-animate/angular-animate.js"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-        <script src="bower_components/angular-resource/angular-resource.js"></script>
-        <script src="bower_components/angular-route/angular-route.js"></script>
-        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-        <script src="bower_components/angular-touch/angular-touch.js"></script>
-        <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-        <script src="bower_components/drop-zone/dropzone.js"></script>
+        <script src="libs/jquery/jquery.min.js"></script>
+        <script src="libs/angular/angular.js"></script>
+        <script src="libs/bootstrap-sass-official/assets/javascripts/bootstrap.min.js"></script>
+        <script src="libs/angular/angular-animate.min.js"></script>
+        <script src="libs/angular/angular-route.min.js"></script>
+		<script src="libs/angular/ui-bootstrap-tpls.min.js"></script>
+        <script src="libs/angular/ng-videosharing-embed.min.js"></script>
+        <script src="libs/angular/angular-bootstrap-lightbox.min.js"></script>
+        <script src="libs/drop-zone/dropzone.js"></script>
 
         <!-- Drag and Drop Image Reordering Module -->
-        <script src="bower_components/jquery/src/jquery-ui.js"></script>
+        <script src="libs/jquery/src/jquery-ui.js"></script>
         <!--Datepicker module-->
         <!-- Include Required Prerequisites -->
-        <script type="text/javascript" src="bower_components/bootstrap-daterangepicker/moment.min.js"></script>
+        <script type="text/javascript" src="libs/bootstrap-daterangepicker/moment.min.js"></script>
 
         <!-- Include Date Range Picker -->
-        <script type="text/javascript" src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+        <script type="text/javascript" src="libs/bootstrap-daterangepicker/daterangepicker.js"></script>
 
         <!-- endbower -->
         <!-- endbuild -->
