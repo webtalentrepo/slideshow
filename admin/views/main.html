@@ -1,15 +1,16 @@
 <div class="gallery-view">
-    <div><h3>{{request_user_email}} ({{request_name}})</h3><button class="btn btn-default pull-right" name="file_upload" ng-click="file_page()">Add New Item</button></div>
+    <div><h3>{{request_user_email}} ({{request_name}})</h3><button class="btn btn-default pull-right" name="file_upload" ng-click="file_page()">Add Image/Video</button></div>
     <div class="file_gallery">
-        <ul class="reorder_ul reorder-photos-list" id="file_lists">
-            <li ng-repeat="myfile in myfiles" id="image_li_{{myfile.id}}" ng-mouseup="file_move(myfile.id)" class="ui-sortable-handle">
-                <a href="javascript:void(0);" style="float:none;" class="image_link">
-                    <img ng-src={{myfile.thumb}} alt="" title={{myfile.file_type}} ng-dblclick="scheduleClk(myfile.id)">
-                    <div class="caption">
-                        <button class="btn btn-default btn-xs pull-left" style="width: 50%;" ng-click="scheduleClk(myfile.id)">Schedule</button>
-                        <button class="btn btn-default btn-xs pull-right" style="width:50%;" ng-click="deleteClk(myfile.id, myfile.file_name)">Delete</button>
-                    </div>
-                </a>
+        <ul class="reorder_ul reorder-photos-list">
+            <li ng-repeat="myfile in myfiles" id="image_li_{{myfile.id}}" ng-class="myfile.class_name" ng-mouseup="file_move(myfile.id)" class="ui-sortable-handle img-thumbnail">
+				<a ng-click="Lightbox.openModal(myfiles, $index)">
+					<div ng-if="myfile.file_type == 'video'" class="back_{{myfile.file_type}}"></div>
+					<img ng-src={{myfile.thumb}} alt="" title={{myfile.file_type}} class="img-thumbnail" ng-dblclick="scheduleClk(myfile.id)"/>
+				</a>
+				<div class="caption">
+					<button class="btn btn-default btn-xs pull-left" style="width: 50%;" ng-click="scheduleClk(myfile.id)">Schedule</button>
+					<button class="btn btn-default btn-xs pull-right" style="width:50%;" ng-click="deleteClk(myfile.id, myfile.file_name)">Delete</button>
+				</div>
             </li>
         </ul>
     </div>

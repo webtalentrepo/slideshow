@@ -1,4 +1,4 @@
-<div><h3>Add New Item</h3></div>
+<div><h3>Add Image/Video</h3></div>
 <div id="actions" class="row" style="margin-top: 50px;">
 
     <div class="col-lg-8 pull-right">
@@ -36,7 +36,7 @@
         <!-- This is used as the file preview template -->
         <br>
         <div>
-            <span class="preview"><img data-dz-thumbnail /></span>
+            <span class="preview"><img class="img-thumbnail" data-dz-thumbnail /></span>
         </div>
         <div>
             <p class="name" data-dz-name></p>
@@ -48,11 +48,11 @@
                 <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
             </div>
         </div>
-        <div>
-            <button class="btn btn-default start">
-                <i class="glyphicon glyphicon-upload"></i>
-                <span>Start</span>
-            </button>
+        <div style="text-align:right;">
+<!--			<button class="btn btn-default start">
+				<i class="glyphicon glyphicon-upload"></i>
+				<span>Start</span>
+			</button>-->
             <button data-dz-remove class="btn btn-default cancel">
                 <i class="glyphicon glyphicon-ban-circle"></i>
                 <span>Cancel</span>
@@ -69,70 +69,81 @@
     </div>
 </div>
 <script>
-            // Get the template HTML and remove it from the doument
-            var previewNode = document.querySelector("#template");
-            previewNode.id = "";
-            var previewTemplate = previewNode.parentNode.innerHTML;
-            previewNode.parentNode.removeChild(previewNode);
-            if (myDropzone)
-                myDropzone.destroy();
-            var myDropzone = new Dropzone(document.body, {// Make the whole body a dropzone
-                url: HOST_DIRECTORY + "upload" + "?id=" + window.sessionStorage.request_id, // Set the url
-//        url: "http://www.torrentplease.com/dropzone.php",
-                thumbnailWidth: 80,
-                thumbnailHeight: 80,
-                parallelUploads: 20,
-                previewTemplate: previewTemplate,
-                autoQueue: false, // Make sure the files aren't queued until manually added
-                previewsContainer: "#previews", // Define the container to display the previews
-                clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-            });
+		// Get the template HTML and remove it from the doument
+		var previewNode = document.querySelector("#template");
+		previewNode.id = "";
+		var previewTemplate = previewNode.parentNode.innerHTML;
+		previewNode.parentNode.removeChild(previewNode);
+		if (myDropzone)
+			myDropzone.destroy();
+//			console.log(HOST_DIRECTORY);
+		var filelength = 0, fileary = [];
+		var myDropzone = new Dropzone(document.body, {// Make the whole body a dropzone
+			url: HOST_DIRECTORY + "upload" + "?id=" + window.sessionStorage.user_id, // Set the url
+			thumbnailWidth: 200,
+			thumbnailHeight: 150,
+			parallelUploads: 20,
+			previewTemplate: previewTemplate,
+			autoQueue: false, // Make sure the files aren't queued until manually added
+			previewsContainer: "#previews", // Define the container to display the previews
+			clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+		});
+		// file upload complete
+		var filelength1 = 0;
+		myDropzone.on("complete", function (file) {
+			// Hookup the start button
+			console.log("Complete :");
+			console.log(file);
+			myDropzone.removeFile(file);
+			filelength1 ++;
+			if (filelength1 == filelength) {
+				filelength = 0;
+				filelength1 = 0;
+				window.location.href = '#/';
+			}
+		});
 
-            myDropzone.on("addedfile", function (file) {
+		myDropzone.on("addedfile", function (file) {
 
-                // if wrong file information
-                var reg = /\.(jpg|jpeg|gif|bmp|png|avi|mpeg|mpg|mp4|ogg|flv|webm|mov)$/i;
-                if(!reg.test(file.name)) {// wrong file
-                    myDropzone.removeFile(file);
-                }
-        
-                // Hookup the start button
-                file.previewElement.querySelector(".start").onclick = function () {
-                    myDropzone.enqueueFile(file);
-                };
-            });
-            myDropzone.on("complete", function (file) { // when complete , auto remove!
-                // Hookup the start button
-                console.log("Complete :");
-                console.log(file);
-                myDropzone.removeFile(file);
-            });
+			// if wrong file information
+			var reg = /\.(jpg|jpeg|gif|bmp|png|avi|mpeg|mpg|mp4|ogg|flv|webm|mov)$/i;
+			if (!reg.test(file.name)) {// wrong file
+				myDropzone.removeFile(file);
+			}
 
+			// Hookup the start button
+//				file.previewElement.querySelector(".start").onclick = function () {
+//					console.log(file);
+//					myDropzone.enqueueFile(file);
+//				};
+		});
 
-            // Update the total progress bar
-            myDropzone.on("totaluploadprogress", function (progress) {
-                document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
-            });
+		// Update the total progress bar
+		myDropzone.on("totaluploadprogress", function (progress) {
+			document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+		});
 
-            myDropzone.on("sending", function (file) {
-                // Show the total progress bar when upload starts
-                document.querySelector("#total-progress").style.opacity = "1";
-                // And disable the start button
-                file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
-            });
+		myDropzone.on("sending", function (file) {
+			// Show the total progress bar when upload starts
+			document.querySelector("#total-progress").style.opacity = "1";
+			// And disable the start button
+//			file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+		});
 
-            // Hide the total progress bar when nothing's uploading anymore
-            myDropzone.on("queuecomplete", function (progress) {
-                document.querySelector("#total-progress").style.opacity = "0";
-            });
+		// Hide the total progress bar when nothing's uploading anymore
+		myDropzone.on("queuecomplete", function (progress) {
+			document.querySelector("#total-progress").style.opacity = "0";
+		});
 
-            // Setup the buttons for all transfers
-            // The "add files" button doesn't need to be setup because the config
-            // `clickable` has already been specified.
-            document.querySelector("#actions .start").onclick = function () {
-                myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-            };
-            document.querySelector("#actions .cancel").onclick = function () {
-                myDropzone.removeAllFiles(true);
-            };
+		// Setup the buttons for all transfers
+		// The "add files" button doesn't need to be setup because the config
+		// `clickable` has already been specified.
+		document.querySelector("#actions .start").onclick = function () {
+			fileary = myDropzone.getFilesWithStatus(Dropzone.ADDED);
+			filelength = fileary.length;
+			myDropzone.enqueueFiles(fileary);
+		};
+		document.querySelector("#actions .cancel").onclick = function () {
+			myDropzone.removeAllFiles(true);
+		};
 </script>
