@@ -1,30 +1,25 @@
-<?php
-    header ( "Content-Type: text/cache-manifest" ) ;
-
-    echo "CACHE MANIFEST\n\n" ;
-//    echo "# version " . $_GET [ "version" ] . "\n" ;
-?>      
+CACHE MANIFEST
 
 
-# 2015-11-11 v1.1.4
-
+/libs/bootstrap/dist/css/bootstrap.min.css
+/libs/angular/angular-bootstrap-lightbox.min.css
+/libs/bootstrap-daterangepicker/daterangepicker.css
+/libs/drop-zone/dropzone.css
 /styles/main.css
-/bower_components/bootstrap/dist/css/bootstrap.min.css
-/bower_components/angular-xeditable/dist/css/xeditable.css
 
 /index.html
 /views/slide.html
 /views/main.html
 
-/bower_components/jquery/dist/jquery.min.js
-/bower_components/angular/angular.js
-/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js
-/bower_components/angular-animate/angular-animate.js
-/bower_components/angular-resource/angular-resource.js
-/bower_components/angular-sanitize/angular-sanitize.js
-/bower_components/angular-touch/angular-touch.js
-/bower_components/angular-xeditable/dist/js/xeditable.js
-/bower_components/jquery/src/jquery-ui.js
+/libs/jquery/jquery.min.js
+/libs/angular/angular.js
+/libs/bootstrap-sass-official/assets/javascripts/bootstrap.min.js
+/libs/angular/angular-animate.min.js
+/libs/angular/angular-route.min.js
+/libs/angular/ui-bootstrap-tpls.min.js
+/libs/angular/ng-videosharing-embed.min.js
+/libs/angular/angular-bootstrap-lightbox.min.js
+/libs/drop-zone/dropzone.js
 
 /scripts/controllers/main.js
 /scripts/controllers/slide.js
@@ -32,7 +27,6 @@
 /scripts/controllers/schedule.js
 /scripts/controllers/slideshow.js
 /scripts/app.js
-
 
 NETWORK: 
 *
