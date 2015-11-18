@@ -1,0 +1,105 @@
+<div class = "admin-format">
+    <div class="col-sm-3 pull-right input-group">
+        <input type="text" ng-model="searchText" class="form-control" placeholder="Search for...">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">Go!</button>
+        </span>
+    </div><!-- /.col-lg-6 -->    
+    <div style="padding-top: 35px;">
+        <table class="table table-striped" ng-init="no = 0">
+            <thead>
+                <tr class='default' style="cursor: pointer;">
+                    <th class="text-center" style="width:15%" ng-click="sort('id')">User ID
+                        <span class="glyphicon sort-icon" style="font-size: 15px;" ng-show="sortKey == 'id'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                    
+                    </th>
+
+                    <th class="text-center" style="width:15%" ng-click="sort('first_name')">First Name 
+                        <span class="glyphicon sort-icon" style="font-size: 15px;" ng-show="sortKey == 'first_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                    </th>
+                    <th class="text-center" style="width:15%" ng-click="sort('last_name')">Last Name 
+                        <span class="glyphicon sort-icon" style="font-size: 15px;" ng-show="sortKey == 'last_name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                    
+                    </th>
+                    <th class="text-center" style="width:20%" ng-click="sort('user_email')">Email 
+                        <span class="glyphicon sort-icon" style="font-size: 15px;" ng-show="sortKey == 'user_email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>                    
+                    </th>
+                    <th class="text-center" style="width:15%">Password</th>
+                    <th class="text-center" style="width:20%">Edit</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr  dir-paginate="user in users|orderBy:sortKey:reverse|filter:searchText|itemsPerPage:8" style="text-align: center;"  current-page="pagination.current">
+                    <td>
+                        {{ user.id || 'empty' }}
+                    </td>
+                    <td>
+                        <!-- editable username (text with validation) -->
+                        <span editable-text="user.first_name" e-name="f" e-form="rowform" e-required>
+                            {{ user.first_name || 'empty' }}
+                        </span>
+                    </td>
+                    <td>
+                        <!-- editable username (text with validation) -->
+                        <span editable-text="user.last_name" e-name="l" e-form="rowform" e-required>
+                            {{ user.last_name || 'empty' }}
+                        </span>
+                    </td>
+                    <td>
+                        <!-- editable username (text with validation) -->
+                        <span editable-text="user.user_email" e-type="email" e-name="e" e-form="rowform" e-required">
+                              {{ user.user_email || 'empty' }}
+                    </span>
+                </td>
+                <td>
+                    <!-- editable username (text with validation) -->
+                    <span editable-text="user.user_password" e-name="p" e-form="rowform" e-required>
+                        {{ user.user_password || 'empty' }}
+                    </span>
+                </td>
+                <td style="white-space: nowrap">
+                    <!-- form -->
+                    <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+                        <button type="submit" ng-disabled="rowform.$waiting"  class="btn btn-default">
+                            save
+                        </button>
+                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                            cancel
+                        </button>
+                    </form>
+                    <div class="buttons" ng-show="!rowform.$visible">
+                        <!--<button class="btn btn-default" ng-click="rowform.$show()">Edit</button>-->
+                        <button type="button"
+                                class="btn btn-default"
+                                ng-dialog="views/update_dialog.html"
+                                ng-dialog-controller="UpdateCtrl"
+                                ng-dialog-data="{{user}}"
+                                ng-dialog-class="ngdialog-theme-default"
+                                ng-dialog-show-close="false">Edit</button>
+
+                        <!--<button class="btn btn-default" ng-click="userEdit(user.id)">Edit</button>-->
+                        <button class="btn btn-default" style="margin-left: 2px;" ng-click="galleryEdit($index, user.id, user.first_name, user.last_name, user.user_email)">Slides</button>
+                        <button class="btn btn-default" style="margin-left: 2px;" ng-click="removeUser(user.id)">Delete</button>
+                    </div>  
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <dir-pagination-controls
+        max-size="8"
+        direction-links="true"
+        boundary-links="true"
+        on-page-change="pageChanged(newPageNumber)">
+    </dir-pagination-controls>        
+</div>
+<div class="pull-right">
+    <!--<button class="btn btn-default" ng-click="addUser()">Add User</button>-->
+    <button type="button"
+            class="btn btn-default"
+            ng-dialog="views/admin_dialog.html"
+            ng-dialog-controller="DialogCtrl"
+            ng-dialog-data="{{pass_data}}"
+            ng-dialog-class="ngdialog-theme-default"
+            ng-dialog-show-close="false">Add User</button>
+</div>
+</div>
+

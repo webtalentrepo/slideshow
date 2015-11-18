@@ -1,0 +1,27 @@
+<div class = "userinfo-format">
+    <form class="form-horizontal" name="userInfo" ng-submit="updateClk()">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-4 control-label">Current Password</label>
+            <div class="col-sm-8">
+                <input ng-model="cur_password" type="password" class="form-control" placeholder="Current Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-4 control-label">New Password</label>
+            <div class="col-sm-8">
+                <input ng-model="new_password" type="password" class="form-control" placeholder="New Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-4 control-label">Confirm Password</label>
+            <div class="col-sm-8">
+                <input ng-model="con_password" type="password" class="form-control" placeholder="Confirm Password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default pull-right">Update</button>
+            </div>
+        </div>
+    </form>
+</div>

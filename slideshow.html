@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Slide Show</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="report_div">Slide Show</div>
+    </body>
+    <script type="text/javascript">
+    
+        // External Request Analysis
+        var loc = window.location.href;
+        var data = document.getElementById("report_div");
+        var bufAry = loc.split("/");
+        var host_path = "";
+        for(var i = 0;i < bufAry.length-1;i ++){
+            host_path +=bufAry[i]+"/";
+        }
+        var buf = bufAry[bufAry.length-1];
+        if(buf){
+            var req = buf.split("?");
+            var file_name = req[0];
+            if(file_name==="slideshow.html"){
+                var content = req[1];
+                var sp = content.split("=");
+                if(sp[0]==="id"){
+                    var req_id = Number(sp[1]);
+                    if(Math.floor(req_id)===req_id){
+                        var path_name = host_path+"#/slide?id=" + req_id;
+                        window.location = path_name;
+                    }
+                    else {
+                        data.innerHTML = "<br />ID Error!";
+                    }
+                }
+                else { // Request Error
+                    data.innerHTML = "<br />Request Error!";
+                }
+            }
+        }
+            //$window.location.href = "#/slide?userid=" + $scope.external_userId;
+
+    </script>
+</html>

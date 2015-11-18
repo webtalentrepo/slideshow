@@ -1,0 +1,138 @@
+<div><h3>Add New Item</h3></div>
+<div id="actions" class="row" style="margin-top: 50px;">
+
+    <div class="col-lg-8 pull-right">
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <button class="btn btn-default fileinput-button">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add files...</span>
+        </button>
+        <button type="submit" class="btn btn-default start">
+            <i class="glyphicon glyphicon-upload"></i>
+            <span>Start upload</span>
+        </button>
+        <button type="reset" class="btn btn-default cancel">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <span>Clear window</span>
+        </button>
+        <button type="button" class="btn btn-default" ng-click="back()">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            <span>Back</span>
+        </button>
+    </div>
+
+    <div class="col-lg-5" ng-hide="true">
+        <!-- The global file processing state -->
+        <span class="fileupload-process">
+            <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+            </div>
+        </span>
+    </div>
+</div>
+<div class="table table-striped files" id="previews">
+
+    <div id="template" class="file-row">
+        <!-- This is used as the file preview template -->
+        <br>
+        <div>
+            <span class="preview"><img data-dz-thumbnail /></span>
+        </div>
+        <div>
+            <p class="name" data-dz-name></p>
+            <strong class="error text-danger" data-dz-errormessage></strong>
+        </div>
+        <div>
+            <p class="size" data-dz-size></p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-default start">
+                <i class="glyphicon glyphicon-upload"></i>
+                <span>Start</span>
+            </button>
+            <button data-dz-remove class="btn btn-default cancel">
+                <i class="glyphicon glyphicon-ban-circle"></i>
+                <span>Cancel</span>
+            </button>
+        </div>
+    </div>
+
+</div>
+<div class="dropzone needsclick dz-clickable" style="-moz-box-shadow: 0 0 2px black;-webkit-box-shadow: 0 0 2px black;box-shadow: 0 0 2px black;">
+    <div class="dz-message" >
+        <p class="text-primary">Drag and drop your files</p>
+        <p class="text-primary">Upload Max File Size : 500MB</p>
+        <p class="text-primary">Upload File Type : all image, video types</p>
+    </div>
+</div>
+<script>
+            // Get the template HTML and remove it from the doument
+            var previewNode = document.querySelector("#template");
+            previewNode.id = "";
+            var previewTemplate = previewNode.parentNode.innerHTML;
+            previewNode.parentNode.removeChild(previewNode);
+            if (myDropzone)
+                myDropzone.destroy();
+            var myDropzone = new Dropzone(document.body, {// Make the whole body a dropzone
+                url: HOST_DIRECTORY + "upload" + "?id=" + window.sessionStorage.request_id, // Set the url
+//        url: "http://www.torrentplease.com/dropzone.php",
+                thumbnailWidth: 80,
+                thumbnailHeight: 80,
+                parallelUploads: 20,
+                previewTemplate: previewTemplate,
+                autoQueue: false, // Make sure the files aren't queued until manually added
+                previewsContainer: "#previews", // Define the container to display the previews
+                clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+            });
+
+            myDropzone.on("addedfile", function (file) {
+
+                // if wrong file information
+                var reg = /\.(jpg|jpeg|gif|bmp|png|avi|mpeg|mpg|mp4|ogg|flv|webm|mov)$/i;
+                if(!reg.test(file.name)) {// wrong file
+                    myDropzone.removeFile(file);
+                }
+        
+                // Hookup the start button
+                file.previewElement.querySelector(".start").onclick = function () {
+                    myDropzone.enqueueFile(file);
+                };
+            });
+            myDropzone.on("complete", function (file) { // when complete , auto remove!
+                // Hookup the start button
+                console.log("Complete :");
+                console.log(file);
+                myDropzone.removeFile(file);
+            });
+
+
+            // Update the total progress bar
+            myDropzone.on("totaluploadprogress", function (progress) {
+                document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+            });
+
+            myDropzone.on("sending", function (file) {
+                // Show the total progress bar when upload starts
+                document.querySelector("#total-progress").style.opacity = "1";
+                // And disable the start button
+                file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+            });
+
+            // Hide the total progress bar when nothing's uploading anymore
+            myDropzone.on("queuecomplete", function (progress) {
+                document.querySelector("#total-progress").style.opacity = "0";
+            });
+
+            // Setup the buttons for all transfers
+            // The "add files" button doesn't need to be setup because the config
+            // `clickable` has already been specified.
+            document.querySelector("#actions .start").onclick = function () {
+                myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+            };
+            document.querySelector("#actions .cancel").onclick = function () {
+                myDropzone.removeAllFiles(true);
+            };
+</script>

@@ -1,0 +1,12 @@
+<div class="app-view-header"><h3 class="lead heading">Slide Show</h3></div>
+<div id="file_repo" ng-class="effect_style">
+    <div ng-if="view_control" ng-class="effect_style">
+        <video loop muted autoplay ng-class="effect_style">
+            <source ng-src={{video_url}} type="video/mp4">
+        </video>
+    </div>
+    <div ng-if="!view_control" ng-class="effect_style">
+        <img ng-class="effect_style" ng-repeat="slide in file_data" ng-src={{slide.url}} ng-if="slide.url == image_url">
+        <!--<img  ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" ng-repeat="slide in file_data" ng-src={{slide.url}} ng-if="slide.url == image_url">-->
+    </div>
+</div>

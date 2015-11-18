@@ -1,0 +1,9 @@
+<div class="app-view-header"><h3 class="lead heading">Slide Show</h3></div>
+<div class="fullscreen-bg">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video" ng-if="view_control">
+        <source ng-src={{video_url}} type="video/mp4">
+    </video>
+    <img id="img_repo" class="fullscreen-img" ng-src={{image_url}} ng-if="!view_control">
+</div>
+<!--<div ng-include="image_view.html">
+</div>-->
