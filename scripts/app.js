@@ -1,4 +1,4 @@
-var HOST_DIRECTORY = "/onpartv/service/";
+var HOST_DIRECTORY = "/onpartv/index.php/service/";
 var DOWNLOAD_LIMIT_TIME = 24; // when  24 hour , new download // slide.html page
 
 'use strict';
@@ -14,12 +14,10 @@ var DOWNLOAD_LIMIT_TIME = 24; // when  24 hour , new download // slide.html page
 angular
         .module('realApp', [
             'ngAnimate',
-            'ngCookies',
-            'ngResource',
             'ngRoute',
-            'ngSanitize',
-            'ngTouch',
-            'xeditable'
+			'ui.bootstrap',
+			'videosharing-embed',
+			'bootstrapLightbox'
         ])
         .config(function ($routeProvider) {
             $routeProvider
@@ -68,6 +66,7 @@ angular
 //  
 /////////////////////////
 angular.module("realApp").controller("RootController", function ($scope, $window, $location) {
+//	console.log($window.sessionStorage.login);
     // Route Change Watch
     $scope.$on('$routeChangeStart', function () {
         if ($window.sessionStorage.login === "success") {
