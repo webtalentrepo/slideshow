@@ -34,6 +34,7 @@ angular.module("realApp")
                         $scope.last_name = "";
                         $scope.user_email = "";
                         $scope.user_password = "";
+						$scope.closeThisDialog();
                     }
                 });
                 
