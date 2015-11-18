@@ -120,7 +120,7 @@ angular.module('realApp')
 							function (html) {
 								$scope.cfdump = html;
 								if (html.result === "YES") {
-									console.log(html);
+//									console.log(html);
 								}
 							}
 					);
