@@ -47,7 +47,7 @@ define('GOOGLE_API_KEY', 'AIzaSyCwYwAaEt9IEGYVzSn-OELSAWJq-gkY0Q0');
 |
 */
 
-define('FILE_UPLOAD_DIRECTORY',		'/upload/');
+define('FILE_UPLOAD_DIRECTORY',	'/upload/');
 
 /* End of file constants.php */
 /* Location: ./application/config/constants.php */

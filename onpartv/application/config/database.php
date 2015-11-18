@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'Onpar.tv';
-$db['default']['username'] = 'onpar';
-$db['default']['password'] = 'B6EtHu$ecR';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'onpar';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
