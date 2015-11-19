@@ -114,7 +114,7 @@ angular.module('realApp')
 					request.success(
 							function (html) {
 								if (html === "YES") {
-									$window.localStorage.removeItem('downtime');
+//									$window.localStorage.removeItem('downtime');
 									$window.localStorage.removeItem('local_data');
 								}
 							}
