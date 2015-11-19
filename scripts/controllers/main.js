@@ -1,5 +1,4 @@
 'use strict';
-
 /**
  * @ngdoc function
  * @name realApp.controller:MainCtrl
@@ -7,20 +6,15 @@
  * # MainCtrl
  * Controller of the realApp
  */
-
 angular.module('realApp')
-
 		.controller('MainCtrl', function ($scope, $window, $http, Lightbox, $location) {
-
 			$scope.drag_flag = 0;
 			if ($window.sessionStorage.login !== "success") {
 				$window.location.href = '#/login';
 			}
 			// file upload button define
 			$scope.file_page = function () {
-
 				$window.location.href = '#/fileupload';
-
 			}
 			// file Schedule function
 			$scope.scheduleClk = function (id) {
@@ -28,7 +22,6 @@ angular.module('realApp')
 			}
 			// file delete function
 			$scope.deleteClk = function (id, file_name) {
-//				console.log(id + file_name);
 				if (confirm("Are you sure you want to delete this file?")) {
 					var delete_data = {
 						id: id,
@@ -83,7 +76,6 @@ angular.module('realApp')
 					}
 			);
 			// Reordering Function
-
 			$(document).ready(function () {
 				$("ul.reorder-photos-list").sortable({tolerance: 'pointer'});
 			});
@@ -104,7 +96,7 @@ angular.module('realApp')
 					$scope.drag_flag = 0;
 					$scope.reorder_data = {
 						ids: h
-					}
+					};
 //					console.log(h);
 					var request = $http({
 						method: "post",
@@ -113,15 +105,15 @@ angular.module('realApp')
 						data: $.param($scope.reorder_data)
 					});
 					request.success(
-							function (html) {
-								$scope.cfdump = html;
-								if (html.result === "YES") {
-									console.log(html);
-								}
+						function (html) {
+//							$scope.cfdump = html;
+							if (html === "YES") {
+//								console.log(html);
+								$window.localStorage.removeItem('downtime');
+								$window.localStorage.removeItem('local_data');
 							}
+						}
 					);
-
 				}
-			}
-
+			};
 		});
