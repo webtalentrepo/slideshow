@@ -14,9 +14,11 @@ angular.module('realApp')
 			if ($scope.bufAry[1]) {
 				$scope.bufAry1 = $scope.bufAry[1].split("=");
 				$scope.external_userId = $scope.bufAry1[1];
-				if ($scope.external_userId) {
-//                    alert($scope.external_userId);
-				}
+				$window.localStorage.removeItem('downtime');
+				$window.localStorage.removeItem('local_data');
+//				if ($scope.external_userId) {
+////                    alert($scope.external_userId);
+//				}
 			}
 			// get all slides
 			$scope.file_data = [];
