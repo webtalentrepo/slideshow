@@ -236,12 +236,10 @@ class Service_Model extends CI_Model {
 		$this->db->where("id", $id);
 		$this->db->update($this->FILE_TABLE, $data);
 		return array("result" => "YES");
-//        echo $result;
 	}
 
 	// File Reordering Module
 	public function fileReordering($id_string) {
-		echo "MODEL RESPONSE :";
 		for ($i = 0; $i < count($id_string); $i ++) {
 			$this->db->where("id", $id_string[$i]);
 			$data = array();
@@ -264,8 +262,6 @@ class Service_Model extends CI_Model {
 
 	// schedule update function
 	public function scheduleUpdate($user_id, $file_id, $file_title, $dwell_time, $start_effect, $end_effect, $begin_date, $end_date) {
-//        echo $begin_date."-----".$end_date;
-//        return;
 		$data = array();
 		$data['title'] = $file_title;
 		$data['stay_time'] = $dwell_time;
@@ -280,11 +276,9 @@ class Service_Model extends CI_Model {
 
 	//get all slides function
 	public function getSlides($user_id) {
-
 		date_default_timezone_set($this->DEFAULT_TIME_ZONE); // timezone setting        
 		// now date getting
 		$now_date = date("Y-m-d");
-
 		$query_string = "SELECT * FROM " . $this->FILE_TABLE;
 		$query_string .= " WHERE user_id = " . $user_id;
 		$query_string .= " AND begin_date <= '" . $now_date . "'";
@@ -322,15 +316,12 @@ class Service_Model extends CI_Model {
 
 	// user delete function
 	public function deleteUser($user_id) {
-
-//        echo "DEL :".$user_id;
 		// user file delete module
 		$query_string = "SELECT file_name,file_type FROM " . $this->FILE_TABLE;
 		$query_string .= " WHERE user_id = " . $user_id;
 		$query = $this->db->query($query_string);
 		$result = $query->result_array();
 		foreach ($result as $item) {
-
 			if ($item['file_type'] === "image") { // if image
 				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['file_name'];
 				if (file_exists($targetFile)) {
@@ -377,5 +368,4 @@ class Service_Model extends CI_Model {
 		$query = $this->db->query($query_string);
 		return array("result" => "YES");
 	}
-
 }
