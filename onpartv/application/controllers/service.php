@@ -3,15 +3,9 @@
 if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 header("Access-Control-Allow-Origin: *");
-
 class Service extends CI_Controller {
-
 	public function index() {
-		
 	}
-
-	//
-	//
     public function registerUser() {
 		$this->load->model('user_model');
 		$this->load->helper('string'); // Random Code Library
@@ -25,7 +19,6 @@ class Service extends CI_Controller {
 		echo json_encode($ret_value);
 		exit;
 	}
-
 	//////// Profile Page Update //////////////
 	public function update() {
 		$this->load->model('service_model');
@@ -39,7 +32,6 @@ class Service extends CI_Controller {
 		echo json_encode($ret_value);
 		exit;
 	}
-
 	//////// Administrator Save Data //////////////
 	public function save_user() {
 		$this->load->model('service_model');
@@ -53,63 +45,47 @@ class Service extends CI_Controller {
 		echo json_encode($ret_value);
 		exit;
 	}
-
 	public function login() {
-//		die('dddd');
 		$this->load->model('service_model');
 		$postResult = $this->input->post();
-//        var_dump($postResult);
 		$user_email = $postResult['user_email'];
 		$user_password = $postResult['user_password'];
 		$ret_value = $this->service_model->loginUser($user_email, $user_password);
 		echo json_encode($ret_value);
 		exit;
 	}
-
 	public function get_users() {
 		$this->load->model('service_model');
 		$ret_value = $this->service_model->getUsers();
 		echo json_encode($ret_value);
 		exit;
 	}
-
 	public function test() {
 		echo "connect success";
 		exit;
 	}
-
 	private function my_file_upload() {
-
 		ini_set('max_execution_time', 1000);
 		ini_set('max_input_time', 1000);
 		ini_set('memory_limit', -1);
 		ini_set('post_max_size', "512M");
-
 		$this->load->model('service_model');
 		$this->load->helper('string'); // Random Code Library
 		$pieces = explode("/", $_FILES['file']['type']); //userid explode
 		$file_type = $pieces[0]; // get file type
-
-
 		$pieces = explode("=", $_SERVER['REQUEST_URI']); //userid explode
 		$request_userid = $pieces[1]; // get user id
-
 		$pieces = explode(".", $_FILES['file']['name']); //userid explode
 		$len = count($pieces);
 		$file_extend = $pieces[$len - 1]; // get file extend
-
 		$file_name = random_string('numeric', 80); //30 digit Generate
 		$file_name = $request_userid . "-" . $file_name; //generate file name
 		$file_full_name = $file_name . "." . $file_extend; //generate file name
 		$file_origin_name = $_FILES['file']['name'];
-
 		if (!empty($_FILES)) { // important file transmit
 			$tempFile = $_FILES['file']['tmp_name'];		  //3             
-
 			$targetPath = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY;
-
 			$targetFile = $targetPath . $file_full_name;  //5
-
 			move_uploaded_file($tempFile, $targetFile); //6
 			$convert_result = $this->my_file_conversion($targetFile, $file_name, $targetPath, $file_type);
 		}
@@ -134,7 +110,6 @@ class Service extends CI_Controller {
 			echo exec($cmd);
 			// file length getting
 			$re = "/Duration\s*:\s*(?P<h>\d+):(?P<m>\d+):(?P<s>\d+)\.(?P<ms>\d+)/";
-
 			if (preg_match($re, $output[17], $matches)) {
 				$hours = $matches['h'];
 				$minutes = $matches['m'];
@@ -159,7 +134,6 @@ class Service extends CI_Controller {
 				exit;
 		}
 	}
-
 	// get user all files getting function
 	public function get_files() {
 		$postRequest = $this->input->post();
@@ -227,6 +201,7 @@ class Service extends CI_Controller {
 		$this->load->model('service_model');
 		$id_string = $postRequest['ids'];
 		$ret_value = $this->service_model->fileReordering($id_string);
+		echo $ret_value['result'];
 		exit;
 	}
 
