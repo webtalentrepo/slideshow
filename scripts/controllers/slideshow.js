@@ -202,7 +202,12 @@ angular.module('realApp')
 						$scope.displaySlide();
 					}
 					else { // No data
-						document.getElementById("file_repo").innerHTML = "<div style='padding-top:100px;' class='text-center'><h2>No slides active for today</h2></div>";
+						var sheight = screen.availHeight * 1 - 100;
+						var noimgstr = '<div class="nothingimg" style="height:' + sheight + 'px;">';
+						noimgstr += '<img class="img-thumbnail img-responsive" alt="" src="' + location.origin + '/images/onpartv.png"/>';
+						noimgstr += '</div>';
+						$('.navbar').remove();
+						$('#file_repo').html('').html(noimgstr);
 					}
 				}
 			);
