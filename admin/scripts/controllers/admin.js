@@ -12,6 +12,8 @@ angular.module('realApp')
 			editableOptions.theme = 'bs2';
 			if ($window.sessionStorage.login !== "success") {// login state checkout
 				$window.location.href = '#/login';
+			} else {
+				$('.navbar').show();
 			}
 			$scope.users = []; //user information getting
 			var request = $http({
