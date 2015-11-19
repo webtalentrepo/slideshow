@@ -10,7 +10,7 @@ class Service_Model extends CI_Model {
 	private $USER_TABLE = "sl_users";
 	private $FILE_TABLE = "sl_files";
 	private $SCHEDULE_TABLE = "sl_schedule";
-	private $DEFAULT_TIME_ZONE = "Europe/Amsterdam";
+	private $DEFAULT_TIME_ZONE = "America/New_York";
 
 	public function updateAuthUser($user_id, $first_name, $last_name, $user_email, $new_password) {
 		// duplicate state check
