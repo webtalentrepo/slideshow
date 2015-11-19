@@ -12,20 +12,23 @@ angular.module('realApp')
 			// External Request Reading
 			var buf = $window.location.href;
 			$scope.bufAry = buf.split("?");
+			$scope.offAry = 0;
 			if ($scope.bufAry[1]) {
-				$scope.bufAry1 = $scope.bufAry[1].split("=");
-				$scope.external_userId = $scope.bufAry1[1];
+				if ($scope.bufAry[1].indexOf('&') != -1) {
+					$scope.bary1 = $scope.bufAry[1].split("&");
+					$scope.bufAry1 = $scope.bary1[0].split("=");
+					$scope.external_userId = $scope.bufAry1[1];
+					if ($scope.bary1[1] && navigator.webkitPersistentStorage) {
+						$scope.offAry1 = $scope.bary1[1].split("=");
+						$scope.offAry = $scope.offAry1[1];
+					}
+				} else {
+					$scope.bufAry1 = $scope.bufAry[1].split("=");
+					$scope.external_userId = $scope.bufAry1[1];
+				}
 				$window.localStorage.removeItem('downtime');
 				$window.localStorage.removeItem('local_data');
 			}
-//			console.log($window.location.href);
-//            var now = "04/09/2013 15:00:00";
-//            var then = "02/09/2013 14:20:30";
-//
-//            var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "DD/MM/YYYY HH:mm:ss"));
-//            var d = moment.duration(ms);
-//            var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
-
 			// LocalState Getting
 			if ($window.localStorage.downtime) { // 
 				var now = new Date();
@@ -37,15 +40,11 @@ angular.module('realApp')
 				if (diff_hour > DOWNLOAD_LIMIT_TIME) {
 					NEW_REQUEST = true;
 				}
-//				console.log(diff_hour);
-//				console.log(DOWNLOAD_LIMIT_TIME);
-			}
-			else {//
+			} else {//
 				var now = new Date();
 				$window.localStorage.downtime = now; // first viewing
 				NEW_REQUEST = true;
 			}
-
 			// get all slides
 			$scope.file_data = [];
 			if ($scope.external_userId)
@@ -140,16 +139,14 @@ angular.module('realApp')
 								w.terminate();
 								w = undefined;
 							};
-							$scope.startWorker();
+							if ($scope.offAry == 1) {
+								$scope.startWorker();
+							}
 							// slide show begin
 							var len = $scope.file_data.length;
 							var slide = 0;
 							var urlval = '';
 							$scope.displaySlide = function () {
-//								urlval = 'filesystem:' + location.origin + '/persistent/' + $scope.file_data[slide].file_name;
-//								$window.webkitResolveLocalFileSystemURL(urlval, function(fileEntry) {
-//									console.log(fileEntry);
-//								});
 								if ($scope.file_data[slide].file_type === "image") {
 									$scope.view_control = false;
 									if (urlval != '') {
@@ -215,8 +212,6 @@ angular.module('realApp')
 								if (slide > len - 1) {
 									slide = 0;
 								}
-//								console.log(cnt);
-//								console.log(fdata.length);
 								if (cnt == fdata.length) {
 									urlval = 'filesystem:' + location.origin + '/persistent/' + $scope.file_data[slide].file_name;
 								} else {
@@ -224,8 +219,7 @@ angular.module('realApp')
 								}
 							};
 							$scope.displaySlide();
-						}
-						else { // No data
+						} else { // No data
 							document.getElementById("file_repo").innerHTML = "<div style='padding-top:100px;' class='text-center'><h2>No slides active for today</h2></div>";
 						}
 					}
