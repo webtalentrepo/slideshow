@@ -11,15 +11,17 @@ angular.module('realApp')
 			$scope.drag_flag = 0;
 			if ($window.sessionStorage.login !== "success") {
 				$window.location.href = '#/login';
+			} else {
+				$('.navbar').show();
 			}
 			// file upload button define
 			$scope.file_page = function () {
 				$window.location.href = '#/fileupload';
-			}
+			};
 			// file Schedule function
 			$scope.scheduleClk = function (id) {
 				$window.location.href = '#/schedule?id=' + id;
-			}
+			};
 			// file delete function
 			$scope.deleteClk = function (id, file_name) {
 				if (confirm("Are you sure you want to delete this file?")) {
