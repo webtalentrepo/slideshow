@@ -126,6 +126,8 @@ angular.module('realApp')
 //								$window.webkitResolveLocalFileSystemURL(urlval, function(fileEntry) {
 //									console.log(fileEntry);
 //								});
+							angular.element('#file_repo').find('video').get(0).stop();
+							
 							if ($scope.file_data[slide].file_type === "image") {
 								$scope.view_control = false;
 								if (urlval != '') {
