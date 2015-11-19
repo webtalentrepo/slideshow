@@ -9,9 +9,7 @@
  */
 
 angular.module('realApp')
-
 		.controller('MainCtrl', function ($scope, $window, $http, Lightbox, $location) {
-
 			$scope.drag_flag = 0;
 			if ($window.sessionStorage.login !== "success") {
 				$window.location.href = '#/login';
@@ -24,11 +22,11 @@ angular.module('realApp')
 
 				$window.location.href = '#/fileupload?request_id=' + $scope.request_id;
 
-			}
+			};
 			// file Schedule function
 			$scope.scheduleClk = function (id) {
 				$window.location.href = '#/schedule?id=' + id;
-			}
+			};
 			// file delete function
 			$scope.deleteClk = function (id, file_name) {
 //				console.log(id + file_name);
@@ -63,7 +61,7 @@ angular.module('realApp')
 							}
 					);
 				}
-			}
+			};
 			// gallery file getting
 			$scope.myfiles = [];
 			$scope.file_data = [];
@@ -81,13 +79,11 @@ angular.module('realApp')
 						$scope.cfdump = html;
 						if (html.result === "YES") {
 							$scope.myfiles = html.data;
-//                            console.log($scope.myfiles);
 							$scope.Lightbox = Lightbox;
 						}
 					}
 			);
 			// Reordering Function
-
 			$(document).ready(function () {
 				$("ul.reorder-photos-list").sortable({tolerance: 'pointer'});
 			});
@@ -109,7 +105,6 @@ angular.module('realApp')
 					$scope.reorder_data = {
 						ids: h
 					};
-//					console.log(h);
 					var request = $http({
 						method: "post",
 						headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
@@ -118,14 +113,12 @@ angular.module('realApp')
 					});
 					request.success(
 							function (html) {
-								$scope.cfdump = html;
-								if (html.result === "YES") {
-//									console.log(html);
+								if (html === "YES") {
+									$window.localStorage.removeItem('downtime');
+									$window.localStorage.removeItem('local_data');
 								}
 							}
 					);
-
 				}
-			}
-
+			};
 		});
