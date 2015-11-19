@@ -109,7 +109,7 @@ angular.module('realApp')
 //							$scope.cfdump = html;
 							if (html === "YES") {
 //								console.log(html);
-								$window.localStorage.removeItem('downtime');
+//								$window.localStorage.removeItem('downtime');
 								$window.localStorage.removeItem('local_data');
 							}
 						}
