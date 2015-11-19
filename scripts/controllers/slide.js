@@ -147,6 +147,7 @@ angular.module('realApp')
 							var slide = 0;
 							var urlval = '';
 							$scope.displaySlide = function () {
+								$('#file_repo').find('video').remove();
 								if ($scope.file_data[slide].file_type === "image") {
 									$scope.view_control = false;
 									if (urlval != '') {
@@ -220,9 +221,9 @@ angular.module('realApp')
 							};
 							$scope.displaySlide();
 						} else { // No data
-							var sheight = screen.availHeight * 1 - 100;
-							var noimgstr = '<div class="nothingimg" style="height:' + sheight + 'px;">';
-							noimgstr += '<img class="img-thumbnail img-responsive" alt="" src="' + location.origin + '/images/onpartv.png"/>';
+							var sheight = screen.availHeight * 1;
+							var noimgstr = '<div class="ng-scope animate-top-enter">';
+							noimgstr += '<img class="ng-scope animate-fadein-enter" alt="" orientable src="' + location.origin + '/images/onpartv.png"/>';
 							noimgstr += '</div>';
 							$('.navbar').remove();
 							$('#file_repo').html('').html(noimgstr);
