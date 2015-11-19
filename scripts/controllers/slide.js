@@ -15,7 +15,10 @@ angular.module('realApp')
 			if ($scope.bufAry[1]) {
 				$scope.bufAry1 = $scope.bufAry[1].split("=");
 				$scope.external_userId = $scope.bufAry1[1];
+				$window.localStorage.removeItem('downtime');
+				$window.localStorage.removeItem('local_data');
 			}
+//			console.log($window.location.href);
 //            var now = "04/09/2013 15:00:00";
 //            var then = "02/09/2013 14:20:30";
 //
@@ -83,7 +86,6 @@ angular.module('realApp')
 									console.log("SERVER DATA :" + $window.localStorage.local_data + "/" + now);
 								}
 							}
-							
 							var w;
 							var requestedBytes = 1024 * 1024 * 1024 * 4;
 							var cnt = 0;
