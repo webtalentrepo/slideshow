@@ -38,6 +38,7 @@ angular.module('realApp')
 					request.success(
 							function (html) {
 								if (html.result === "YES") {
+									$window.localStorage.removeItem('local_data');
 									var new_request = $http({
 										method: "post",
 										headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
