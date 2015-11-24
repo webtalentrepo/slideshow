@@ -230,47 +230,47 @@ class Service_Model extends CI_Model {
 	}
 
 	public function deleteFile($id, $file_name) {
-//		$query_string = "SELECT file_name, file_type FROM " . $this->FILE_TABLE;
-//		$query_string .= " WHERE `id` = " . $id;
-//		$query = $this->db->query($query_string);
-//		$result = $query->result_array();
-//		foreach ($result as $item) {
-//			if ($item['file_type'] === "image") { // if image
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['file_name'];
-//				if (file_exists($targetFile)) {
-//					unlink($targetFile);
-//				}
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . "t.png";
-//				if (file_exists($targetFile)) {
-//					unlink($targetFile);
-//				}
-//			} else { // if video
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".mp4";
-//				if (file_exists($targetFile)) { //mp4 file delete
-//					unlink($targetFile);
-//				}
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".webm";
-//				if (file_exists($targetFile)) { //mp4 file delete
-//					unlink($targetFile);
-//				}
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".avi";
-//				if (file_exists($targetFile)) { //mp4 file delete
-//					unlink($targetFile);
-//				}
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".ogg";
-//				if (file_exists($targetFile)) { //mp4 file delete
-//					unlink($targetFile);
-//				}
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".png";
-//				if (file_exists($targetFile)) { //mp4 file delete
-//					unlink($targetFile);
-//				}
-//				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . "t.png";
-//				if (file_exists($targetFile)) { //mp4 file delete
-//					unlink($targetFile);
-//				}
-//			}
-//		}
+		$query_string = "SELECT file_name, file_type FROM " . $this->FILE_TABLE;
+		$query_string .= " WHERE `id` = " . $id;
+		$query = $this->db->query($query_string);
+		$result = $query->result_array();
+		foreach ($result as $item) {
+			if ($item['file_type'] === "image") { // if image
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['file_name'];
+				if (file_exists($targetFile)) {
+					unlink($targetFile);
+				}
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . "t.png";
+				if (file_exists($targetFile)) {
+					unlink($targetFile);
+				}
+			} else { // if video
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".mp4";
+				if (file_exists($targetFile)) { //mp4 file delete
+					unlink($targetFile);
+				}
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".webm";
+				if (file_exists($targetFile)) { //mp4 file delete
+					unlink($targetFile);
+				}
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".avi";
+				if (file_exists($targetFile)) { //mp4 file delete
+					unlink($targetFile);
+				}
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".ogg";
+				if (file_exists($targetFile)) { //mp4 file delete
+					unlink($targetFile);
+				}
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . ".png";
+				if (file_exists($targetFile)) { //mp4 file delete
+					unlink($targetFile);
+				}
+				$targetFile = $_SERVER['DOCUMENT_ROOT'] . FILE_UPLOAD_DIRECTORY . $item['name_only'] . "t.png";
+				if (file_exists($targetFile)) { //mp4 file delete
+					unlink($targetFile);
+				}
+			}
+		}
 		// file record delete
 		$query_string = "DELETE FROM " . $this->FILE_TABLE;
 		$query_string .= " WHERE `id`=" . $id;
